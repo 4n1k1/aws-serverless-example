@@ -1,0 +1,767 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Parameters": {
+        "PythonCodeBucketName": {
+            "Type": "String",
+            "Description": "Enter bucket name where python code zip file is located",
+            "Default": "announcements-code-london"
+        },
+        "PythonCodeZipFileName": {
+            "Type": "String",
+            "Description": "Enter zip file name as it appears in the bucket",
+            "Default": "announcements.zip"
+        },
+        "AnnouncementsTableName": {
+            "Type": "String",
+            "Description": "Enter name of the DynamoDB table to create and use",
+            "Default": "announcements-london"
+        },
+        "ValidTokenValue": {
+            "Type": "String",
+            "Description": "Enter some string (TOKEN_VALUE in Postman)",
+            "Default": "Th3M0stV@l1dT0k3n"
+        }
+    },
+    "Metadata": {
+        "AWS::CloudFormation::Designer": {
+            "f09f6cb9-8d82-4f3f-8899-06f02448ba02": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 680,
+                    "y": 50
+                },
+                "z": 0,
+                "embeds": []
+            },
+            "a999e50c-431e-4e3a-b90e-7ab42872dc95": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 480,
+                    "y": 50
+                },
+                "z": 0,
+                "embeds": [],
+                "isassociatedwith": [
+                    "c0e2e6bd-9868-42b2-9a29-1fbfa4445b0e"
+                ]
+            },
+            "c11ff6e7-271e-4578-9fa0-34da70c8ad7b": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 870,
+                    "y": 50
+                },
+                "z": 0,
+                "embeds": [],
+                "isassociatedwith": [
+                    "5756bfba-d718-42a9-b7d1-8d6407d29302"
+                ]
+            },
+            "c0e2e6bd-9868-42b2-9a29-1fbfa4445b0e": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 310,
+                    "y": 50
+                },
+                "z": 0,
+                "embeds": [],
+                "dependson": [
+                    "a999e50c-431e-4e3a-b90e-7ab42872dc95"
+                ]
+            },
+            "5756bfba-d718-42a9-b7d1-8d6407d29302": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 870,
+                    "y": 210
+                },
+                "z": 0,
+                "embeds": [],
+                "dependson": [
+                    "c11ff6e7-271e-4578-9fa0-34da70c8ad7b"
+                ]
+            },
+            "47395824-f431-4e15-99a4-5ffea345656b": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 310,
+                    "y": 210
+                },
+                "z": 0,
+                "embeds": []
+            },
+            "ae6ca2ef-25b7-4b7b-8606-aeecf84d41ce": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 1030,
+                    "y": 210
+                },
+                "z": 0,
+                "embeds": []
+            },
+            "4de1c74e-dc23-4876-a25b-23fc769c8db6": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 680,
+                    "y": 210
+                },
+                "z": 0,
+                "embeds": []
+            },
+            "437867d8-2b3f-4748-ad4a-1bc42a978f56": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 1030,
+                    "y": 350
+                },
+                "z": 0,
+                "embeds": [],
+                "isassociatedwith": [
+                    "583f6a49-0ab3-42af-aff1-04b4e5e50a5c"
+                ],
+                "iscontainedinside": [
+                    "dedf2f14-bfc7-4562-a76a-d09a5e8c5bbf"
+                ],
+                "dependson": [
+                    "ae6ca2ef-25b7-4b7b-8606-aeecf84d41ce"
+                ]
+            },
+            "583f6a49-0ab3-42af-aff1-04b4e5e50a5c": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 680,
+                    "y": 350
+                },
+                "z": 0,
+                "embeds": [],
+                "iscontainedinside": [
+                    "dedf2f14-bfc7-4562-a76a-d09a5e8c5bbf"
+                ],
+                "dependson": [
+                    "4de1c74e-dc23-4876-a25b-23fc769c8db6"
+                ]
+            },
+            "dedf2f14-bfc7-4562-a76a-d09a5e8c5bbf": {
+                "size": {
+                    "width": 130,
+                    "height": 80
+                },
+                "position": {
+                    "x": 640,
+                    "y": 480
+                },
+                "z": 0,
+                "embeds": []
+            },
+            "1db5b289-35ab-416f-b930-85a75fabce79": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 310,
+                    "y": 350
+                },
+                "z": 0,
+                "embeds": [],
+                "isassociatedwith": [
+                    "583f6a49-0ab3-42af-aff1-04b4e5e50a5c"
+                ],
+                "iscontainedinside": [
+                    "dedf2f14-bfc7-4562-a76a-d09a5e8c5bbf"
+                ],
+                "dependson": [
+                    "47395824-f431-4e15-99a4-5ffea345656b"
+                ]
+            },
+            "c9753e35-44b9-4321-af95-8b8ddb6f8236": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 490,
+                    "y": 590
+                },
+                "z": 0,
+                "embeds": [],
+                "isassociatedwith": [
+                    "c8becff7-54d5-4451-9878-23cb494a385f"
+                ],
+                "iscontainedinside": [
+                    "dedf2f14-bfc7-4562-a76a-d09a5e8c5bbf"
+                ]
+            },
+            "c8becff7-54d5-4451-9878-23cb494a385f": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 680,
+                    "y": 710
+                },
+                "z": 0,
+                "embeds": [],
+                "iscontainedinside": [
+                    "dedf2f14-bfc7-4562-a76a-d09a5e8c5bbf"
+                ],
+                "dependson": [
+                    "1db5b289-35ab-416f-b930-85a75fabce79",
+                    "437867d8-2b3f-4748-ad4a-1bc42a978f56"
+                ]
+            },
+            "14114374-75b5-460e-bb97-db36d2e19233": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 540,
+                    "y": 210
+                },
+                "z": 0,
+                "embeds": [],
+                "isassociatedwith": [
+                    "4de1c74e-dc23-4876-a25b-23fc769c8db6"
+                ]
+            },
+            "fdfc481c-0301-4dcc-8212-7802595d980e": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 440,
+                    "y": 210
+                },
+                "z": 0,
+                "embeds": [],
+                "isassociatedwith": [
+                    "47395824-f431-4e15-99a4-5ffea345656b"
+                ]
+            },
+            "dfa03485-fadb-4c3f-8215-fd97e1d286d6": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 1030,
+                    "y": 50
+                },
+                "z": 0,
+                "embeds": [],
+                "isassociatedwith": [
+                    "ae6ca2ef-25b7-4b7b-8606-aeecf84d41ce"
+                ]
+            }
+        }
+    },
+    "Resources": {
+        "AnnouncementsTable": {
+            "Type": "AWS::DynamoDB::Table",
+            "Properties": {
+                "BillingMode": "PAY_PER_REQUEST",
+                "TableName": {
+                    "Ref": "AnnouncementsTableName"
+                },
+                "KeySchema": [
+                    {
+                        "AttributeName": "uid",
+                        "KeyType": "HASH"
+                    }
+                ],
+                "AttributeDefinitions": [
+                    {
+                        "AttributeName": "uid",
+                        "AttributeType": "S"
+                    }
+                ]
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "f09f6cb9-8d82-4f3f-8899-06f02448ba02"
+                }
+            }
+        },
+        "AnnouncementsCreatePolicy": {
+            "Type": "AWS::IAM::Policy",
+            "Properties": {
+                "PolicyName": "AnnouncementsCreatePolicy",
+                "Roles": [
+                    {
+                        "Ref": "AnnouncementsCreateRole"
+                    }
+                ],
+                "PolicyDocument": {
+                    "Version": "2012-10-17",
+                    "Statement": [
+                        {
+                            "Sid": "AnnouncementsCreatePolicy",
+                            "Effect": "Allow",
+                            "Action": "dynamodb:PutItem",
+                            "Resource": {
+                                "Fn::GetAtt": [
+                                    "AnnouncementsTable",
+                                    "Arn"
+                                ]
+                            }
+                        }
+                    ]
+                }
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "a999e50c-431e-4e3a-b90e-7ab42872dc95"
+                }
+            }
+        },
+        "AnnouncementsListPolicy": {
+            "Type": "AWS::IAM::Policy",
+            "Properties": {
+                "PolicyName": "AnnouncementsListPolicy",
+                "Roles": [
+                    {
+                        "Ref": "AnnouncementsListRole"
+                    }
+                ],
+                "PolicyDocument": {
+                    "Version": "2012-10-17",
+                    "Statement": [
+                        {
+                            "Sid": "AnnouncementsListPolicy",
+                            "Effect": "Allow",
+                            "Action": "dynamodb:Scan",
+                            "Resource": {
+                                "Fn::GetAtt": [
+                                    "AnnouncementsTable",
+                                    "Arn"
+                                ]
+                            }
+                        }
+                    ]
+                }
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "c11ff6e7-271e-4578-9fa0-34da70c8ad7b"
+                }
+            }
+        },
+        "AnnouncementsCreateRole": {
+            "Type": "AWS::IAM::Role",
+            "Properties": {
+                "RoleName": "AnnouncementsCreateRole",
+                "AssumeRolePolicyDocument": {
+                    "Version": "2012-10-17",
+                    "Statement": [
+                        {
+                            "Effect": "Allow",
+                            "Principal": {
+                                "Service": "lambda.amazonaws.com"
+                            },
+                            "Action": "sts:AssumeRole"
+                        }
+                    ]
+                }
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "c0e2e6bd-9868-42b2-9a29-1fbfa4445b0e"
+                }
+            }
+        },
+        "AnnouncementsListRole": {
+            "Type": "AWS::IAM::Role",
+            "Properties": {
+                "RoleName": "AnnouncementsListRole",
+                "AssumeRolePolicyDocument": {
+                    "Version": "2012-10-17",
+                    "Statement": [
+                        {
+                            "Effect": "Allow",
+                            "Principal": {
+                                "Service": "lambda.amazonaws.com"
+                            },
+                            "Action": "sts:AssumeRole"
+                        }
+                    ]
+                }
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "5756bfba-d718-42a9-b7d1-8d6407d29302"
+                }
+            }
+        },
+        "AnnouncementsCreateLambda": {
+            "Type": "AWS::Lambda::Function",
+            "Properties": {
+                "FunctionName": "AnnouncementsCreateLambda",
+                "Handler": "main.create_announcement",
+                "Runtime": "python3.8",
+                "Role": {
+                    "Fn::GetAtt": [
+                        "AnnouncementsCreateRole",
+                        "Arn"
+                    ]
+                },
+                "Code": {
+                    "S3Bucket": {
+                        "Ref": "PythonCodeBucketName"
+                    },
+                    "S3Key": {
+                        "Ref": "PythonCodeZipFileName"
+                    }
+                },
+                "Environment": {
+                    "Variables": {
+                        "TABLE_NAME": {
+                            "Ref": "AnnouncementsTableName"
+                        }
+                    }
+                }
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "47395824-f431-4e15-99a4-5ffea345656b"
+                }
+            }
+        },
+        "AnnouncementsListLambda": {
+            "Type": "AWS::Lambda::Function",
+            "Properties": {
+                "FunctionName": "AnnouncementsListLambda",
+                "Handler": "main.list_announcements",
+                "Runtime": "python3.8",
+                "Role": {
+                    "Fn::GetAtt": [
+                        "AnnouncementsListRole",
+                        "Arn"
+                    ]
+                },
+                "Code": {
+                    "S3Bucket": {
+                        "Ref": "PythonCodeBucketName"
+                    },
+                    "S3Key": {
+                        "Ref": "PythonCodeZipFileName"
+                    }
+                },
+                "Environment": {
+                    "Variables": {
+                        "TABLE_NAME": {
+                            "Ref": "AnnouncementsTableName"
+                        }
+                    }
+                }
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "ae6ca2ef-25b7-4b7b-8606-aeecf84d41ce"
+                }
+            }
+        },
+        "AnnouncementsAuthorizeLambda": {
+            "Type": "AWS::Lambda::Function",
+            "Properties": {
+                "FunctionName": "AnnouncementsAuthorizeLambda",
+                "Handler": "main.authorize",
+                "Runtime": "python3.8",
+                "Role": {
+                    "Fn::GetAtt": [
+                        "AnnouncementsListRole",
+                        "Arn"
+                    ]
+                },
+                "Code": {
+                    "S3Bucket": {
+                        "Ref": "PythonCodeBucketName"
+                    },
+                    "S3Key": {
+                        "Ref": "PythonCodeZipFileName"
+                    }
+                },
+                "Environment": {
+                    "Variables": {
+                        "VALID_TOKEN": {
+                            "Ref": "ValidTokenValue"
+                        }
+                    }
+                }
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "4de1c74e-dc23-4876-a25b-23fc769c8db6"
+                }
+            }
+        },
+        "AnnouncementsGetMethod": {
+            "Type": "AWS::ApiGateway::Method",
+            "Properties": {
+                "Integration": {
+                    "Type": "AWS",
+                    "Uri": {
+                        "Fn::Sub": "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${AnnouncementsListLambda.Arn}/invocations"
+                    },
+                    "IntegrationHttpMethod": "POST",
+                    "IntegrationResponses": [
+                        {
+                            "StatusCode": "200"
+                        }
+                    ]
+                },
+                "MethodResponses": [
+                    {
+                        "StatusCode": "200",
+                        "ResponseModels": {
+                            "application/json": "Empty"
+                        }
+                    }
+                ],
+                "HttpMethod": "GET",
+                "RestApiId": {
+                    "Ref": "AnnouncementsRestApi"
+                },
+                "ResourceId": {
+                    "Fn::GetAtt": [
+                        "AnnouncementsRestApi",
+                        "RootResourceId"
+                    ]
+                },
+                "AuthorizationType": "CUSTOM",
+                "AuthorizerId": {
+                    "Ref": "AnnouncementsApiAuthorizer"
+                }
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "437867d8-2b3f-4748-ad4a-1bc42a978f56"
+                }
+            },
+            "DependsOn": [
+                "AnnouncementsListLambda"
+            ]
+        },
+        "AnnouncementsApiAuthorizer": {
+            "Type": "AWS::ApiGateway::Authorizer",
+            "Properties": {
+                "Type": "TOKEN",
+                "IdentitySource": "method.request.header.authorizationToken",
+                "Name": "AnnouncementsApiAuthorizer",
+                "RestApiId": {
+                    "Ref": "AnnouncementsRestApi"
+                },
+                "AuthorizerUri": {
+                    "Fn::Sub": "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${AnnouncementsAuthorizeLambda.Arn}/invocations"
+                }
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "583f6a49-0ab3-42af-aff1-04b4e5e50a5c"
+                }
+            },
+            "DependsOn": [
+                "AnnouncementsAuthorizeLambda"
+            ]
+        },
+        "AnnouncementsRestApi": {
+            "Type": "AWS::ApiGateway::RestApi",
+            "Properties": {
+                "Name": "AnnouncementsRestApi",
+                "EndpointConfiguration": {
+                    "Types": [
+                        "REGIONAL"
+                    ]
+                }
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "dedf2f14-bfc7-4562-a76a-d09a5e8c5bbf"
+                }
+            }
+        },
+        "AnnouncementsPostMethod": {
+            "Type": "AWS::ApiGateway::Method",
+            "Properties": {
+                "Integration": {
+                    "Type": "AWS",
+                    "Uri": {
+                        "Fn::Sub": "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${AnnouncementsCreateLambda.Arn}/invocations"
+                    },
+                    "IntegrationHttpMethod": "POST",
+                    "IntegrationResponses": [
+                        {
+                            "StatusCode": "200"
+                        }
+                    ]
+                },
+                "MethodResponses": [
+                    {
+                        "StatusCode": "200",
+                        "ResponseModels": {
+                            "application/json": "Empty"
+                        }
+                    }
+                ],
+                "HttpMethod": "POST",
+                "RestApiId": {
+                    "Ref": "AnnouncementsRestApi"
+                },
+                "ResourceId": {
+                    "Fn::GetAtt": [
+                        "AnnouncementsRestApi",
+                        "RootResourceId"
+                    ]
+                },
+                "AuthorizationType": "CUSTOM",
+                "AuthorizerId": {
+                    "Ref": "AnnouncementsApiAuthorizer"
+                }
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "1db5b289-35ab-416f-b930-85a75fabce79"
+                }
+            },
+            "DependsOn": [
+                "AnnouncementsCreateLambda"
+            ]
+        },
+        "AnnouncementsDemoStage": {
+            "Type": "AWS::ApiGateway::Stage",
+            "Properties": {
+                "RestApiId": {
+                    "Ref": "AnnouncementsRestApi"
+                },
+                "DeploymentId": {
+                    "Ref": "AnnouncementsDemoDeployment"
+                }
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "c9753e35-44b9-4321-af95-8b8ddb6f8236"
+                }
+            }
+        },
+        "AnnouncementsDemoDeployment": {
+            "Type": "AWS::ApiGateway::Deployment",
+            "Properties": {
+                "RestApiId": {
+                    "Ref": "AnnouncementsRestApi"
+                }
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "c8becff7-54d5-4451-9878-23cb494a385f"
+                }
+            },
+            "DependsOn": [
+                "AnnouncementsPostMethod",
+                "AnnouncementsGetMethod"
+            ]
+        },
+        "AnnouncementsAuthorizeLambdaExecutePermission": {
+            "Type": "AWS::Lambda::Permission",
+            "Properties": {
+                "Action": "lambda:InvokeFunction",
+                "FunctionName": {
+                    "Fn::GetAtt": [
+                        "AnnouncementsAuthorizeLambda",
+                        "Arn"
+                    ]
+                },
+                "Principal": "apigateway.amazonaws.com",
+                "SourceArn": {
+                    "Fn::Sub": "arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${AnnouncementsRestApi}/authorizers/${AnnouncementsApiAuthorizer}"
+                }
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "14114374-75b5-460e-bb97-db36d2e19233"
+                }
+            }
+        },
+        "AnnouncementsCreateLambdaExecutePermissions": {
+            "Type": "AWS::Lambda::Permission",
+            "Properties": {
+                "Action": "lambda:InvokeFunction",
+                "FunctionName": {
+                    "Fn::GetAtt": [
+                        "AnnouncementsCreateLambda",
+                        "Arn"
+                    ]
+                },
+                "Principal": "apigateway.amazonaws.com",
+                "SourceArn": {
+                    "Fn::Sub": "arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${AnnouncementsRestApi}/*/POST/"
+                }
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "fdfc481c-0301-4dcc-8212-7802595d980e"
+                }
+            }
+        },
+        "AnnouncementsListLambdaExecutePermissions": {
+            "Type": "AWS::Lambda::Permission",
+            "Properties": {
+                "Action": "lambda:InvokeFunction",
+                "FunctionName": {
+                    "Fn::GetAtt": [
+                        "AnnouncementsListLambda",
+                        "Arn"
+                    ]
+                },
+                "Principal": "apigateway.amazonaws.com",
+                "SourceArn": {
+                    "Fn::Sub": "arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${AnnouncementsRestApi}/*/GET/"
+                }
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "dfa03485-fadb-4c3f-8215-fd97e1d286d6"
+                }
+            }
+        }
+    },
+    "Outputs": {
+        "DeployedApiEndpoints": {
+            "Description": "URL for announcements GET and POST (API_URL in Postman)",
+            "Value": {
+                "Fn::Sub": "https://${AnnouncementsRestApi}.execute-api.${AWS::Region}.amazonaws.com/${AnnouncementsDemoStage}"
+            }
+        }
+    }
+}

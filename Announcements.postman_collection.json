@@ -1,0 +1,413 @@
+{
+	"info": {
+		"_postman_id": "72dc5642-6022-45d3-904c-dfa93302a391",
+		"name": "Announcements",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "List Announcements",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4564c878-3a74-4218-aa2c-1b77645a1b49",
+						"exec": [
+							"pm.test(\"Response returns array of announcements\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"\r",
+							"    const responseJson = JSON.parse(pm.response.json());\r",
+							"\r",
+							"    pm.expect(responseJson).to.be.an(\"object\");\r",
+							"    pm.expect(responseJson.announcements).to.be.a(\"array\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "{{TOKEN_NAME}}",
+						"value": "{{TOKEN_VALUE}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{API_URL}}",
+					"host": [
+						"{{API_URL}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Announcement",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5c688b4d-9064-40d1-ae4d-ade60c288021",
+						"exec": [
+							"pm.test(\"Response returns array of announcements\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"\r",
+							"    const responseJson = JSON.parse(pm.response.json());\r",
+							"\r",
+							"    pm.expect(responseJson).to.be.an(\"object\");\r",
+							"    pm.expect(responseJson.message).to.be.a(\"string\");\r",
+							"    pm.expect(responseJson.message).to.be.equal(\"Success\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "{{TOKEN_NAME}}",
+						"value": "{{TOKEN_VALUE}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "\"{\\\"date\\\": \\\"9/24/2020\\\", \\\"description\\\": \\\"2222\\\", \\\"title\\\": \\\"565555555\\\"}\"",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API_URL}}",
+					"host": [
+						"{{API_URL}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List Announcements Unauthorized",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "815b84de-7534-492e-b973-b32cfce64eff",
+						"exec": [
+							"pm.test(\"GET requires authorization\", function () {\r",
+							"    pm.response.to.have.status(401);\r",
+							"\r",
+							"    const responseJson = pm.response.json();\r",
+							"\r",
+							"    pm.expect(responseJson).to.be.an(\"object\");\r",
+							"    pm.expect(responseJson.message).to.be.a(\"string\");\r",
+							"    pm.expect(responseJson.message).to.be.equal(\"Unauthorized\")\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}",
+					"host": [
+						"{{API_URL}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Announcement Unauthorized",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b6648c6b-88c2-4f0d-aec1-3fa8f2c09aa5",
+						"exec": [
+							"pm.test(\"POST requires authorization\", function () {\r",
+							"    pm.response.to.have.status(401);\r",
+							"\r",
+							"    const responseJson = pm.response.json();\r",
+							"\r",
+							"    pm.expect(responseJson).to.be.an(\"object\");\r",
+							"    pm.expect(responseJson.message).to.be.a(\"string\");\r",
+							"    pm.expect(responseJson.message).to.be.equal(\"Unauthorized\")\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "\"{\\\"date\\\": \\\"9/24/2020\\\", \\\"description\\\": \\\"2222\\\", \\\"title\\\": \\\"565555555\\\"}\"",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API_URL}}",
+					"host": [
+						"{{API_URL}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Announcement Malformed Body",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4d205567-daf8-4ba7-84a1-a5469ffa561e",
+						"exec": [
+							"pm.test(\"Response returns array of announcements\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"\r",
+							"    const responseJson = JSON.parse(pm.response.json());\r",
+							"\r",
+							"    pm.expect(responseJson).to.be.an(\"object\");\r",
+							"    pm.expect(responseJson.message).to.be.a(\"string\");\r",
+							"    pm.expect(responseJson.message).to.be.equal(\"Error: request body is malformed\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "{{TOKEN_NAME}}",
+						"value": "{{TOKEN_VALUE}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "\"[\\\"Hello World\\\"]\"",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API_URL}}",
+					"host": [
+						"{{API_URL}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Announcement Incorrect Fields",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "79d864aa-3cf0-4a5c-9cdd-209bb2419404",
+						"exec": [
+							"pm.test(\"Request must contain all required fields\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"\r",
+							"    const responseJson = JSON.parse(pm.response.json());\r",
+							"\r",
+							"    pm.expect(responseJson).to.be.an(\"object\");\r",
+							"    pm.expect(responseJson.message).to.be.a(\"string\");\r",
+							"    pm.expect(responseJson.message).to.be.equal(\"Error: incorrect set of fields\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "{{TOKEN_NAME}}",
+						"type": "text",
+						"value": "{{TOKEN_VALUE}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "\"{\\\"date\\\": \\\"9/24/2020\\\", \\\"description\\\": \\\"2222\\\", \\\"doom\\\": \\\"565555555\\\"}\"",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API_URL}}",
+					"host": [
+						"{{API_URL}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Announcement Incorrect Value Types",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a9cde3c7-0324-439f-aa12-1254ef1fd3cd",
+						"exec": [
+							"pm.test(\"Only string values are supported\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"\r",
+							"    const responseJson = JSON.parse(pm.response.json());\r",
+							"\r",
+							"    pm.expect(responseJson).to.be.an(\"object\");\r",
+							"    pm.expect(responseJson.message).to.be.a(\"string\");\r",
+							"    pm.expect(responseJson.message).to.be.equal(\"Error: only string values are supported\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "{{TOKEN_NAME}}",
+						"type": "text",
+						"value": "{{TOKEN_VALUE}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "\"{\\\"date\\\": 1, \\\"description\\\": 2, \\\"title\\\": 3}\"",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API_URL}}",
+					"host": [
+						"{{API_URL}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Announcement Non JSON Body",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4dc9bb06-7151-449e-a6b6-dc1eed1ab02d",
+						"exec": [
+							"pm.test(\"Non JSON request body is not supported\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"\r",
+							"    const responseJson = JSON.parse(pm.response.json());\r",
+							"\r",
+							"    pm.expect(responseJson).to.be.an(\"object\");\r",
+							"    pm.expect(responseJson.message).to.be.a(\"string\");\r",
+							"    pm.expect(responseJson.message).to.contain(\"Error\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "{{TOKEN_NAME}}",
+						"type": "text",
+						"value": "{{TOKEN_VALUE}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "\"Hello World\"",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API_URL}}",
+					"host": [
+						"{{API_URL}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "a9fb6063-00f6-421f-9e7b-5294c2e7891e",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "7495a33d-4a49-4c4a-8584-4322208786cf",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "354d0489-d85e-4577-99c9-9fa0b1226885",
+			"key": "API_URL",
+			"value": "https://phrhpfucua.execute-api.eu-west-2.amazonaws.com/annouAnnou1FOTXIU9EBBZ5"
+		},
+		{
+			"id": "de7f5482-f93a-46d3-bdc8-16bf90d70a58",
+			"key": "TOKEN_NAME",
+			"value": "authorizationToken"
+		},
+		{
+			"id": "fabb91b3-2c56-40a3-8877-3ca1ffcbf367",
+			"key": "TOKEN_VALUE",
+			"value": "Th3M0stV@l1dT0k3n"
+		}
+	],
+	"protocolProfileBehavior": {}
+}
